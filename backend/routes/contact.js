@@ -5,8 +5,10 @@ const router = express.Router();
 
 function validate({ name, email, message }) {
   const errors = [];
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
+
   if (!name || name.trim().length < 2) errors.push("Name is too short.");
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!email || !emailRegex.test(email)) {
     errors.push("A valid email is required.");
   }
   if (!message || message.trim().length < 10) {
@@ -40,14 +42,16 @@ router.post("/", async (req, res) => {
 
   try {
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 465,
-      secure: true,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
+  host: process.env.SMTP_HOST,
+  port: Number(process.env.SMTP_PORT) || 465,
+  secure: true,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+  family: 4, // force IPv4 — fixes connection timeouts on hosts like Render
+  connectionTimeout: 10000,
+});
 
     await transporter.sendMail({
       from: `"Portfolio Contact Form" <${process.env.SMTP_USER}>`,
@@ -55,7 +59,7 @@ router.post("/", async (req, res) => {
       replyTo: email,
       subject: `New portfolio message from ${name}`,
       text: message,
-      html: `<p><strong>From:</strong> ${name} (${email})</p><p>${message.replace(/\n/g, "<br/>")}</p>`,
+      html: `<p><strong>From:</strong> ${name} (${email})</p><p>${message.replaceAll("\n", "<br/>")}</p>`,
     });
 
     res.json({ success: true });
