@@ -1,12 +1,11 @@
 import express from "express";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
 const router = express.Router();
 
 function validate({ name, email, message }) {
   const errors = [];
   const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
-
   if (!name || name.trim().length < 2) errors.push("Name is too short.");
   if (!email || !emailRegex.test(email)) {
     errors.push("A valid email is required.");
@@ -20,7 +19,6 @@ function validate({ name, email, message }) {
 router.post("/", async (req, res) => {
   const { name, email, message, honeypot } = req.body || {};
 
-  // Simple honeypot field to catch basic bots (frontend keeps it hidden)
   if (honeypot) {
     return res.status(200).json({ success: true });
   }
@@ -30,9 +28,8 @@ router.post("/", async (req, res) => {
     return res.status(400).json({ success: false, errors });
   }
 
-  // If SMTP isn't configured yet, log instead of failing so the form still works during setup
-  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-    console.log("New contact message (SMTP not configured, logging only):", {
+  if (!process.env.RESEND_API_KEY) {
+    console.log("New contact message (RESEND_API_KEY not configured, logging only):", {
       name,
       email,
       message,
@@ -41,22 +38,12 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: Number(process.env.SMTP_PORT) || 465,
-  secure: true,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-  family: 4, // force IPv4 — fixes connection timeouts on hosts like Render
-  connectionTimeout: 10000,
-});
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
-    await transporter.sendMail({
-      from: `"Portfolio Contact Form" <${process.env.SMTP_USER}>`,
-      to: process.env.CONTACT_RECEIVER || process.env.SMTP_USER,
-      replyTo: email,
+    await resend.emails.send({
+      from: "Portfolio Contact Form <onboarding@resend.dev>",
+      to: process.env.CONTACT_RECEIVER,
+      reply_to: email,
       subject: `New portfolio message from ${name}`,
       text: message,
       html: `<p><strong>From:</strong> ${name} (${email})</p><p>${message.replaceAll("\n", "<br/>")}</p>`,
