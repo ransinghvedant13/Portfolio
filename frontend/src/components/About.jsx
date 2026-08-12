@@ -4,7 +4,7 @@ import { about, education } from "../data/content";
 
 export default function About() {
   const [visible, setVisible] = useState(false);
-  const stats = [["1+", "years building"], ["90%+", "model accuracy"], ["3", "team members led"]];
+  
   return (
     <section id="about" className="py-24 border-b border-line" onMouseEnter={() => setVisible(true)}>
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-[0.3fr_0.7fr] gap-10">
@@ -46,9 +46,7 @@ export default function About() {
               </div>
             )}
           </motion.div>
-          <div className="grid grid-cols-3 gap-3 pt-2">
-            {stats.map(([value, label]) => <div key={label} className="border-l-2 border-blueprint pl-3"><p className="font-display text-2xl font-semibold text-ink">{visible ? value : "0"}</p><p className="font-mono text-[10px] text-steel uppercase">{label}</p></div>)}
-          </div>
+          
         </div>
       </div>
     </section>
