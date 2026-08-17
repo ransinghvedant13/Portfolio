@@ -15,7 +15,7 @@ export default function Hero() {
   const [photoFailed, setPhotoFailed] = useState(false);
   const [typed, setTyped] = useState("");
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
-  const roles = ["Full-stack developer", "Problem solver", "ML enthusiast"];
+  const roles = ["Software Engineer", "Full-stack developer", "Problem solver"];
   const [roleIndex, setRoleIndex] = useState(0);
   useEffect(() => {
     const text = roles[roleIndex];
@@ -51,6 +51,17 @@ export default function Hero() {
           >
             // PORTFOLIO — {new Date().getFullYear()}
           </motion.p>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            custom={0.5}
+            className="inline-flex items-center gap-2 border border-live px-3 py-1.5 mb-5 font-mono text-xs text-live"
+          >
+            <span className="w-2 h-2 rounded-full bg-live inline-block animate-pulse" />
+            {profile.availability}
+          </motion.div>
 
           <motion.h1
             variants={fadeUp}
@@ -94,13 +105,15 @@ export default function Hero() {
               href="#projects"
               className="bg-ink text-paper px-6 py-3 font-medium hover:bg-blueprint transition-colors"
             >
-              View my work
+              View my projects
             </a>
             <a
-              href="#contact"
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
               className="border border-ink px-6 py-3 font-medium hover:border-blueprint hover:text-blueprint transition-colors"
             >
-              Get in touch
+              GitHub
             </a>
             <a
               href={profile.resumeUrl}

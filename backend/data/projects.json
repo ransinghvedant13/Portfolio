@@ -1,17 +1,25 @@
 [
   {
-    "id": "proj-4",
-    "name": "SentinelAI — Real-Time Fraud Risk & ML Monitoring",
+    "id": "proj-vmat",
+    "name": "VMAT Africa — Business Website",
     "status": "Live",
-    "summary": "An end-to-end ML service that scores payment transactions for fraud risk in real time, with a FastAPI backend, a React dashboard, explainable risk reasons, and feature-drift monitoring.",
-    "stack": ["Python", "FastAPI", "scikit-learn", "React", "Docker"],
-    "highlights": [
-      "Built a /predict API returning low/medium/high risk with human-readable reasons and a review recommendation",
-      "Added a /monitor/drift endpoint to detect feature drift against the training baseline before model quality degrades",
-      "Shipped with pytest API tests, a Dockerfile, and a GitHub Actions CI workflow for a production-style ML deployment"
+    "summary": "A responsive business website for a company operating across mining, commodity trading, agro solutions and project development, built as a freelance React frontend project.",
+    "stack": [
+      "React.js",
+      "JavaScript",
+      "Tailwind CSS",
+      "React Router",
+      "Vite"
     ],
-    "liveUrl": "https://sentinel-ai-fraud-monitor.onrender.com",
-    "repoUrl": "https://github.com/ransinghvedant13/sentinel-ai-fraud-monitor",
+    "highlights": [
+      "Responsive design across mobile, tablet and desktop",
+      "Business-unit navigation across multiple divisions (mining, trading, agro, projects)",
+      "Reusable React components and a multi-page routing structure",
+      "Contact functionality with WhatsApp integration"
+    ],
+    "contribution": "Designed the component structure, built responsive React interfaces for each business unit, implemented navigation and contact functionality, and deployed the site.",
+    "liveUrl": "",
+    "repoUrl": "",
     "image": ""
   },
   {
@@ -19,14 +27,43 @@
     "name": "Personal Portfolio — Full-Stack Developer Site",
     "status": "In Progress",
     "summary": "This site itself: a full-stack portfolio built to demonstrate real end-to-end development, not just a static page — a React frontend backed by a live Node.js/Express API.",
-    "stack": ["React", "Node.js", "Express", "Tailwind CSS", "Three.js"],
+    "stack": [
+      "React",
+      "Node.js",
+      "Express",
+      "Tailwind CSS",
+      "Three.js"
+    ],
     "highlights": [
       "Built a REST API serving live project data and a working contact form that sends real email via Nodemailer",
       "Added rate limiting and honeypot spam protection on the backend",
       "Designed a custom visual identity and an animated Three.js background instead of using a template"
     ],
+    "contribution": "Built both the React frontend and the Express API, including the /api/projects and /api/contact routes, then deployed frontend and backend together.",
     "liveUrl": "",
     "repoUrl": "",
+    "image": ""
+  },
+  {
+    "id": "proj-4",
+    "name": "SentinelAI — Real-Time Fraud Risk & ML Monitoring",
+    "status": "Live",
+    "summary": "An end-to-end ML service that scores payment transactions for fraud risk in real time, with a FastAPI backend, a React dashboard, explainable risk reasons, and feature-drift monitoring.",
+    "stack": [
+      "Python",
+      "FastAPI",
+      "scikit-learn",
+      "React",
+      "Docker"
+    ],
+    "highlights": [
+      "Built a /predict API returning low/medium/high risk with human-readable reasons and a review recommendation",
+      "Added a /monitor/drift endpoint to detect feature drift against the training baseline before model quality degrades",
+      "Shipped with pytest API tests, a Dockerfile, and a GitHub Actions CI workflow for a production-style ML deployment"
+    ],
+    "contribution": "Built the FastAPI service end to end — the prediction endpoint, the drift-monitoring endpoint, the React dashboard, and the CI/Docker deployment setup.",
+    "liveUrl": "https://sentinel-ai-fraud-monitor.onrender.com",
+    "repoUrl": "https://github.com/ransinghvedant13/sentinel-ai-fraud-monitor",
     "image": ""
   },
   {
@@ -34,11 +71,17 @@
     "name": "Stroke Risk Prediction Web Application",
     "status": "Completed",
     "summary": "A full-stack web app that predicts personalized stroke risk levels (Normal, Medium, High) using machine learning models trained on ECG, ECHO, and clinical data.",
-    "stack": ["Python", "Machine Learning", "ECG/ECHO Data", "Clinical Data"],
+    "stack": [
+      "Python",
+      "Machine Learning",
+      "ECG/ECHO Data",
+      "Clinical Data"
+    ],
     "highlights": [
       "Built the frontend interface and integrated ECG and ECHO data inputs",
       "Improved prediction accuracy through better user interaction design"
     ],
+    "contribution": "Built the frontend interface, wired up ECG/ECHO data inputs to the prediction model, and iterated on the UX to make results clearer for non-technical users.",
     "liveUrl": "",
     "repoUrl": "",
     "image": ""
@@ -48,11 +91,16 @@
     "name": "Animal Recognition",
     "status": "Completed",
     "summary": "Machine learning model classifying animal species from a 10,000+ image dataset, built with a team of 3.",
-    "stack": ["Python", "Machine Learning", "CNN"],
+    "stack": [
+      "Python",
+      "Machine Learning",
+      "CNN"
+    ],
     "highlights": [
       "Achieved 90%+ classification accuracy",
       "Led a team of 3; owned data curation, cleaning, and preprocessing"
     ],
+    "contribution": "Led a team of 3, owned data curation, cleaning and preprocessing for a 10,000+ image dataset, and tuned the CNN model to 90%+ accuracy.",
     "liveUrl": "",
     "repoUrl": "",
     "image": ""

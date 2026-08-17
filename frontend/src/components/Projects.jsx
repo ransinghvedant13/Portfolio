@@ -13,7 +13,7 @@ export default function Projects() {
   const [filter, setFilter] = useState("All");
   const [selected, setSelected] = useState(null);
   const filters = ["All", "React", "Machine Learning"];
-  const visibleProjects = useMemo(() => filter === "All" ? projects : projects.filter(p => p.stack?.includes(filter)), [filter, projects]);
+  const visibleProjects = useMemo(() => filter === "All" ? projects : projects.filter(p => p.stack?.some((tech) => tech.includes(filter))), [filter, projects]);
 
   useEffect(() => {
     let cancelled = false;
@@ -126,7 +126,7 @@ export default function Projects() {
             </motion.article>
           ))}
         </div>
-        {selected && <div role="dialog" aria-modal="true" className="fixed inset-0 z-50 grid place-items-center bg-ink/50 p-6" onClick={() => setSelected(null)}><motion.div initial={{opacity:0,scale:.96}} animate={{opacity:1,scale:1}} onClick={(e)=>e.stopPropagation()} className="max-w-xl w-full bg-paper border border-line p-7 shadow-2xl"><button onClick={()=>setSelected(null)} className="float-right font-mono text-sm text-steel hover:text-ink">close ×</button><p className="section-label">PROJECT DETAIL</p><h3 className="font-display text-2xl font-semibold mt-2 text-ink">{selected.name}</h3><p className="mt-5 text-steel leading-relaxed">{selected.summary}</p><ul className="mt-5 space-y-2">{selected.highlights?.map(h=><li key={h} className="text-sm text-ink">→ {h}</li>)}</ul></motion.div></div>}
+        {selected && <div role="dialog" aria-modal="true" className="fixed inset-0 z-50 grid place-items-center bg-ink/50 p-6" onClick={() => setSelected(null)}><motion.div initial={{opacity:0,scale:.96}} animate={{opacity:1,scale:1}} onClick={(e)=>e.stopPropagation()} className="max-w-xl w-full bg-paper border border-line p-7 shadow-2xl max-h-[85vh] overflow-y-auto"><button onClick={()=>setSelected(null)} className="float-right font-mono text-sm text-steel hover:text-ink">close ×</button><p className="section-label">PROJECT DETAIL</p><h3 className="font-display text-2xl font-semibold mt-2 text-ink">{selected.name}</h3><p className="mt-5 text-steel leading-relaxed">{selected.summary}</p>{selected.highlights?.length > 0 && <><p className="mt-5 font-mono text-xs text-blueprint">KEY FEATURES</p><ul className="mt-2 space-y-2">{selected.highlights.map(h=><li key={h} className="text-sm text-ink">→ {h}</li>)}</ul></>}{selected.contribution && <><p className="mt-5 font-mono text-xs text-blueprint">MY CONTRIBUTION</p><p className="mt-2 text-sm text-steel leading-relaxed">{selected.contribution}</p></>}{selected.stack?.length > 0 && <><p className="mt-5 font-mono text-xs text-blueprint">TECH STACK</p><div className="flex flex-wrap gap-2 mt-2">{selected.stack.map(tech=><span key={tech} className="font-mono text-xs bg-paper border border-line px-2 py-1 text-steel">{tech}</span>)}</div></>}<div className="flex gap-5 font-mono text-sm mt-6 pt-5 border-t border-line">{selected.liveUrl && <a href={selected.liveUrl} target="_blank" rel="noreferrer" className="text-blueprint hover:text-brass">live demo →</a>}{selected.repoUrl && <a href={selected.repoUrl} target="_blank" rel="noreferrer" className="text-blueprint hover:text-brass">source →</a>}</div></motion.div></div>}
       </div>
     </section>
   );

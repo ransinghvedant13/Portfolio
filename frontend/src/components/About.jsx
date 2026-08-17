@@ -1,15 +1,13 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import { about, education } from "../data/content";
 
 export default function About() {
-  const [visible, setVisible] = useState(false);
   
   return (
-    <section id="about" className="py-24 border-b border-line" onMouseEnter={() => setVisible(true)}>
+    <section id="about" className="py-24 border-b border-line">
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-[0.3fr_0.7fr] gap-10">
         <div>
-          <p className="section-label">// 01 ABOUT</p>
+          <p className="section-label">{`// 01 ABOUT`}</p>
           <h2 className="font-display text-3xl font-semibold mt-2 text-ink">
             About me
           </h2>

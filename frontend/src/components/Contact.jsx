@@ -43,13 +43,15 @@ export default function Contact() {
     <section id="contact" className="py-24">
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12">
         <div>
-          <p className="section-label">// 05 CONTACT</p>
+          <p className="section-label">// 06 CONTACT</p>
           <h2 className="font-display text-3xl font-semibold mt-2 text-ink mb-4">
-            Let's build something
+            Let's build something together
           </h2>
+          <p className="text-steel max-w-sm mb-2">
+            I'm currently open to Software Engineer and Full Stack Developer opportunities.
+          </p>
           <p className="text-steel max-w-sm mb-6">
-            Open to freelance work, full-time roles, and interesting collaborations.
-            Reach out directly or use the form.
+            Reach out directly or use the form — I usually reply within a day or two.
           </p>
           <dl className="font-mono text-sm space-y-2">
             <div className="flex gap-3">
@@ -60,6 +62,21 @@ export default function Contact() {
                 </a>
               </dd>
             </div>
+            {profile.phone && (
+              <div className="flex gap-3">
+                <dt className="text-steel">whatsapp</dt>
+                <dd>
+                  <a
+                    href={`https://wa.me/${profile.phone.replace(/[^0-9]/g, "")}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blueprint hover:text-brass"
+                  >
+                    {profile.phone}
+                  </a>
+                </dd>
+              </div>
+            )}
             <div className="flex gap-3">
               <dt className="text-steel">github</dt>
               <dd>

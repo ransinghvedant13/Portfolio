@@ -12,7 +12,7 @@ export default function Skills() {
           What I work with
         </h2>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
           {skills.map((group, i) => (
             <motion.div
               key={group.category}
@@ -23,9 +23,9 @@ export default function Skills() {
               onMouseEnter={() => setActive(group.category)}
               onFocus={() => setActive(group.category)}
               tabIndex="0"
-              className={`cursor-default border p-5 transition-all ${active === group.category ? "border-blueprint bg-paper shadow-sm -translate-y-1" : "border-transparent hover:border-line"}`}
+              className={`cursor-default border p-5 transition-all ${group.category === "Currently Learning" ? "border-dashed" : ""} ${active === group.category ? "border-blueprint bg-paper shadow-sm -translate-y-1" : "border-transparent hover:border-line"}`}
             >
-              <h3 className="font-mono text-xs tracking-wide text-blueprint mb-3">
+              <h3 className={`font-mono text-xs tracking-wide mb-3 ${group.category === "Currently Learning" ? "text-brass" : "text-blueprint"}`}>
                 {group.category.toUpperCase()}
               </h3>
               <ul className="space-y-2">
