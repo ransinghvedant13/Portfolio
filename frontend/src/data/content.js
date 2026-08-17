@@ -53,10 +53,11 @@ export const skills = [
 
 // Used only as a fallback if the backend API is unreachable
 export const fallbackProjects = [
-  {
-    id: "proj-vmat",
-    name: "VMAT Africa — Business Website",
-    status: "Live",
+  
+    {
+  id: "proj-vmat",
+  name: "VMAT Africa — Business Website",
+  status: "In Progress",
     summary:
       "A responsive business website for a company operating across mining, commodity trading, agro solutions and project development, built as a freelance React frontend project.",
     stack: ["React.js", "JavaScript", "Tailwind CSS", "React Router", "Vite"],
